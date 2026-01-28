@@ -4,16 +4,17 @@ The Landau _function_ `g(n)` returns the largest Lowest Common Multiple ([LCM](h
 
 The Landau Sampler takes an audio clip of n seconds, partitions it into smaller clips so that when stacked and looped, the resulting audio only loops every g(n) seconds. g(n) gets [very big very fast](https://oeis.org/A000793/list).
 
-For example, a 5 second clip would be split into a 2 second and 3 second clip, and those would both be looped and stacked, and only repeat every 6 seconds. 5 = (2 + 3) -> lcm(2, 3) = 6 (and you can see for yourself by trying other partitions that this is maximal)
-A 12 second clip results in a 60 second output! 12 = (3 + 4 + 5) -> lcm(3, 4, 5) = 60
-A 60 second clip, when Landaued*, results in an output almost 12 days long!!! 60 = (3 + 4 + 5 + 7 + 11 + 13 + 17) -> lcm(those) = 1,021,020
+For example, a 5 second clip is split into a 2 second and 3 second clip, and those are looped and stacked, with the resulting clip only repeating every 6 seconds. 5 = (2 + 3) -> lcm(2, 3) = 6 (and you can see for yourself by trying other partitions that this is maximal)
+A 12 second clip, when Landaued, results in a 60 second output! 12 = (3 + 4 + 5) -> lcm(3, 4, 5) = 60
+A 60 second clip, after the process of Landauification, results in an output almost 12 days long!!! 60 = (3 + 4 + 5 + 7 + 11 + 13 + 17) -> lcm(those) = 1,021,020
 
 You may have noticed that the optimal strategy is to pack in as many coprime prime powers as you can that sum to n, but whether your did or not is immaterial as the code will do it for you either way!
 
 
 Here's a visualisation of the 12 second case:
 
-To see the lack of repetition, pay attention to the patterns made by the darkest segments from each colour. This is a 3:4:5 polyrhythm! The current default would actually split it up like 5|4|3 rather than 3|4|5, but I plan to make that configurable (and randomizable)
+To see the lack of repetition, pay attention to the patterns made by the darkest segments from each colour. This is a 3:4:5 polyrhythm! They're all polytrhythms! And not just any polyrhytms, but maximally coprime.
+Note: The current default would actually split it up like 5|4|3 rather than 3|4|5, but I plan to make that configurable (and randomizable)
 
 
 ## Usage
@@ -24,4 +25,10 @@ To see the lack of repetition, pay attention to the patterns made by the darkest
 - Better normalization
 - Advanced cut point selection (use/set zero crossings)
 - Unit selection (no need for it to be whole seconds)
-- Make a plugin
+- Make a plugin version
+
+
+## If you like this you may also like
+- [Steve Reich](https://www.youtube.com/watch?v=lzkOFJMI5i8)
+- Jacob Collier (if you like _music_ at all, see this man live if you get the chance)
+- Some of [my other projects](https://oisinmoran.com/projects)
