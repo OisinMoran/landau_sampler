@@ -52,7 +52,7 @@ pip install numpy soundfile
 python3 landau_sampler.py input.wav output.wav
 ```
 As simple as that! You can also use MP3s as the input.
-Please have fun with this, try lots of different types of sounds and lengths **(but remember: the output from a 60 second input clip will be almost 12 days long!)**, and let me know if you find anything fun!
+Please have fun with this, try lots of different types of sounds and lengths **(but remember: the output from a 60 second input clip will be almost 12 days long!)**, and let me know if you find anything cool!
 
 Feel free to leave any nice comments as an issue on this repo, or at:
 lynkmi link
