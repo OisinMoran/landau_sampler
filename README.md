@@ -82,3 +82,9 @@ Twitter link
 - [Steve Reich](https://www.youtube.com/watch?v=lzkOFJMI5i8)
 - Jacob Collier (if you like _music_ at all, see this man live if you get the chance)
 - Some of [my other projects](https://oisinmoran.com/projects)
+
+
+### License
+**CC BY-NC-SA 4.0**
+TL;DR: Feel free to use and modify the source code, original must be credited, cannot use commercially, derivatives must use the same license.
+
