@@ -1,14 +1,24 @@
 # The Landau Sampler
 
-The Landau _function_ `g(n)` returns the largest Lowest Common Multiple ([LCM](https://en.wikipedia.org/wiki/Least_common_multiple)) of [partitions](https://en.wikipedia.org/wiki/Integer_partition) of n.
+The Landau _function_ `g(n)` returns the largest Lowest Common Multiple ([LCM](https://en.wikipedia.org/wiki/Least_common_multiple)) of [partitions](https://en.wikipedia.org/wiki/Integer_partition) of `n`.
 
-**The Landau Sampler** takes an audio clip of n seconds, partitions it into smaller clips so that when stacked and looped, the resulting audio only loops every g(n) seconds. g(n) gets [very big very fast](https://oeis.org/A000793/list).
+**The Landau Sampler** takes an audio clip of `n` seconds, partitions it into smaller clips so that when stacked and looped, the resulting audio only loops every `g(n)` seconds. `g(n)` gets [very big very fast](https://oeis.org/A000793/list).
 
-For example, a 5 second clip is split into a 2 second and 3 second clip, and those are looped and stacked, with the resulting clip only repeating every 6 seconds. 5 = (2 + 3) -> lcm(2, 3) = 6 (you can see for yourself by trying other partitions that this is maximal)
+For example, a 5 second clip is split into a 2 second and 3 second clip, and those are looped and stacked, with the resulting clip only repeating every 6 seconds. You can hopefully see for yourself by trying other partitions that this is maximal.
+```
+5 = (2 + 3) -> lcm(2, 3) = 6
+```
 
-A 12 second clip, when Landaued, results in a 60 second output! 12 = (3 + 4 + 5) -> lcm(3, 4, 5) = 60
 
-A 60 second clip, after the process of Landauification, results in an output almost 12 days long!!! 60 = (3 + 4 + 5 + 7 + 11 + 13 + 17) -> lcm(those) = 1,021,020
+A 12 second clip, when Landaued, results in a 60 second output!
+```
+12 = (3 + 4 + 5) -> lcm(3, 4, 5) = 60
+```
+
+A 60 second clip, after the process of Landauification, results in an output almost 12 days long!!!
+```
+60 = (3 + 4 + 5 + 7 + 11 + 13 + 17) -> lcm(those) = 1,021,020
+```
 
 You may have noticed that the optimal strategy is to pack in as many coprime prime powers as you can that sum to n, but whether your did or not is immaterial as the code will do it for you either way!
 
