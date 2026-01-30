@@ -66,7 +66,7 @@ Please have fun with this, try lots of different types of sounds and lengths **(
 
 Feel free to leave any nice comments or cool findings as an issue on this repo, or on:
 - [lynkmi](https://lynkmi.com/l/1399)
-- Hacker News
+- [Hacker News](https://news.ycombinator.com/item?id=46819983)
 - Twitter
 
 
