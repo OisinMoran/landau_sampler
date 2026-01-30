@@ -9,6 +9,9 @@ audio clip of g(n) seconds.
 from math import lcm
 from functools import reduce
 import numpy as np
+import argparse
+import sys
+import os
 
 
 def lcm_list(lst):
@@ -163,47 +166,46 @@ def landau_audio_loop_from_file(input_path, output_path=None):
     return output, sample_rate, g_n, partition
 
 
-# Example usage and demo with synthetic audio
+def parse_args():
+    """Parse command line arguments."""
+    parser = argparse.ArgumentParser(
+        prog='landau-sampler',
+        description='Process audio files using the Landau function to create maximally coprime polyrhythmic loops'
+    )
+
+    # Input file (required, positional)
+    parser.add_argument('input', help='Input audio file path')
+
+    # Output file (optional, supports both positional and flag syntax)
+    parser.add_argument('output', nargs='?', help='Output audio file path (optional)')
+    parser.add_argument('-o', '--output-file', dest='output_flag',
+                        help='Output file path (alternative to positional argument)')
+
+    return parser.parse_args()
+
+
 if __name__ == "__main__":
-    # Demo with a synthetic 5-second audio clip
-    sample_rate = 44100
-    n_seconds = 10
+    args = parse_args()
 
-    # Create a simple test signal: different frequencies for each "section"
-    # This will help us hear the looping effect
-    t = np.linspace(0, n_seconds, n_seconds * sample_rate, endpoint=False)
-
-    # Create audio that changes character over time so we can hear the splits
-    audio = np.zeros_like(t)
-    audio += 0.3 * np.sin(2 * np.pi * 220 * t)  # Base A3
-    audio += 0.3 * np.sin(2 * np.pi * 440 * t) * (t / n_seconds)  # Rising A4
-    audio += (
-        0.2 * np.sin(2 * np.pi * 330 * t) * ((n_seconds - t) / n_seconds)
-    )  # Falling E4
-
-    print("=" * 50)
-    print("LANDAU AUDIO LOOPER DEMO")
-    print("=" * 50)
-    print()
-
-    output, g_n, partition = landau_audio_loop(audio, sample_rate)
-
-    print()
-    print(f"Input: {len(audio)} samples ({n_seconds}s)")
-    print(f"Output: {len(output)} samples ({g_n}s)")
-
-    # Save demo files
+    # Check for soundfile library
     try:
-        import soundfile as sf
-
-        fname_input = f"demo_input_{n_seconds}s.wav"
-        fname_output = f"demo_output_landau_{g_n}s.wav"
-        sf.write(f"/Users/oisin/{fname_input}", audio, sample_rate)
-        sf.write(f"/Users/oisin/{fname_output}", output, sample_rate)
-        print()
-        print("Demo files saved:")
-        print(f"  - {fname_input} ({n_seconds} seconds)")
-        print(f"  - {fname_output} ({g_n} seconds)")
+        import soundfile
     except ImportError:
-        print()
-        print("Install soundfile to save demo: pip install soundfile")
+        print("Error: soundfile library required", file=sys.stderr)
+        print("Install with: pip install soundfile", file=sys.stderr)
+        sys.exit(1)
+
+    # Validate input file exists
+    if not os.path.exists(args.input):
+        print(f"Error: Input file not found: {args.input}", file=sys.stderr)
+        sys.exit(1)
+
+    # Determine output path (priority: -o flag > positional > default)
+    output_path = args.output_flag or args.output
+
+    # Process the audio file
+    try:
+        landau_audio_loop_from_file(args.input, output_path)
+    except Exception as e:
+        print(f"Error processing audio: {e}", file=sys.stderr)
+        sys.exit(1)
