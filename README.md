@@ -86,5 +86,6 @@ Twitter link
 
 ### License
 **CC BY-NC-SA 4.0**
-TL;DR: Feel free to use and modify the source code, original must be credited, cannot use commercially, derivatives must use the same license.
+
+_**TL;DR:** Feel free to use and modify the source code, original must be credited, cannot use commercially, derivatives must use the same license._
 
